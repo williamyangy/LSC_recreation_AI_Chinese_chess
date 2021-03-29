@@ -1,5 +1,3 @@
-/*! 一叶孤舟 | qq:28701884 | 欢迎指教 */
-
 var com = com||{};
 
 com.init = function (stype){
@@ -66,7 +64,7 @@ window.onload = function(){
 	com.get("bnBox").style.display = "block";
 	//play.init();
 	com.get("billBn").addEventListener("click", function(e) {
-		if (confirm("是否结束对局，开始棋局研究？")){
+		if (confirm("Finish and begin research")){
 			com.init();
 			com.get("chessRight").style.display = "block";
 			com.get("moveInfo").style.display = "none";
@@ -74,7 +72,7 @@ window.onload = function(){
 		}
 	})
 	com.get("superPlay").addEventListener("click", function(e) {
-		if (confirm("确认开始大师级对弈？")){
+		if (confirm("Advanced level confirmed")){
 			play.isPlay=true ;	
 			com.get("chessRight").style.display = "none";
 			com.get("moveInfo").style.display = "block";
@@ -84,7 +82,7 @@ window.onload = function(){
 		}
 	})
 	com.get("tyroPlay").addEventListener("click", function(e) {
-		if (confirm("确认开始新手级对弈？")){
+		if (confirm("Beginner level confirmed")){
 			play.isPlay=true ;	
 			com.get("chessRight").style.display = "none";
 			com.get("moveInfo").style.display = "block";
