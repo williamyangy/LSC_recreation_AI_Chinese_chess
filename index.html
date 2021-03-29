@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>LSC Recreation Chess Game</title>
+
+<link href="css/zzsc.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+<div class="box" id="box">
+	<H4>LSC recreation AI Chinese chess game. Please use Chrome, Firefox, Safari or Opera browser.</H4>
+	<div class="chess_left">
+		<canvas id="chess">Sorry, please change to Chrome Browser！</canvas>
+		<audio src="audio/click.wav" id="clickAudio" preload="auto"></audio>
+		<!--<audio src="audio/check.wav" id="checkAudio" preload="auto"></audio>-->
+		<audio src="audio/select.wav" id="selectAudio" preload="auto"></audio>
+		<div>
+			<div class="bn_box" id="bnBox">
+				<input type="button" style="background:green; cursor:pointer" name="offensivePlay" id="tyroPlay" value="Beginner Level" />
+				<input type="button" style="background:red; cursor:pointer" name="offensivePlay" id="superPlay" value="Advanced Level" />
+
+                <!--input type="button" name="button" id="" value="大师水平" disabled /-->
+				<!--
+			<input type="button" name="offensivePlay" id="offensivePlay" value="先手开始" />
+			<input type="button" name="defensivePlay" id="defensivePlay" value="后手开始" />
+			-->
+				<input type="button" style="background:yellow; cursor:pointer" name="regret" id="regretBn" value="Restart" />
+				<input type="button" name="billBn" id="billBn" value="map" class="bn_box" />
+				<!--input type="button" name="stypeBn" id="stypeBn" value="Change Background" /-->
+			</div>
+		</div>
+	</div>
+	<div class="chess_right" id="chessRight">
+		<select name="billList" id="billList">
+		</select>
+		<ol id="billBox" class="bill_box">
+		</ol>
+	</div>
+	<div id="moveInfo" class="move_info"> </div>
+</div>
+<script src="js/common.js"></script> 
+<script src="js/play.js"></script> 
+<script src="js/AI.js"></script> 
+<script src="js/bill.js"></script> 
+<script src="js/gambit.js"></script>
+<div style="text-align:center;clear:both">
+
+</div>
+</body>
+</html>
