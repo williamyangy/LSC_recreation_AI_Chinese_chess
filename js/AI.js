@@ -42,7 +42,7 @@ AI.init = function(pace){
 	if (val&&val.value!=-8888) {
 		var man = play.mans[val.key];
 		var nowTime= new Date().getTime();
-		com.get("moveInfo").innerHTML='<h3>AI algorithms calculation result£º</h3>
+		com.get("moveInfo").innerHTML='<h3>AI algorithms calculation result£º</h3>'+
 										'<br />search depth£º'+AI.treeDepth+'<br />Searched branch£º'+
 										AI.number+'braches <br />Best move rating£º'+
 										val.value+'%'+
