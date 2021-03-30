@@ -9,7 +9,7 @@ AI.init = function(pace){
 	if (bill.length){
 		var len=pace.length;
 		var arr=[];
-		//先搜索棋谱
+	
 		for (var i=0;i< bill.length;i++){
 			if (bill[i].slice(0,len)==pace) {
 			arr.push(bill[i]);
@@ -42,12 +42,11 @@ AI.init = function(pace){
 	if (val&&val.value!=-8888) {
 		var man = play.mans[val.key];
 		var nowTime= new Date().getTime();
-		com.get("moveInfo").innerHTML='<h3>AI search results：</h3>Best move：'+
-										com.createMove(com.arr2Clone(play.map),man.x,man.y,val.x,val.y)+
-										'<br />search depth：'+AI.treeDepth+'<br />search branch：'+
-										AI.number+'个 <br />Best Move rating：'+
-										val.value+'分'+
-										' <br />Search time：'+
+		com.get("moveInfo").innerHTML='<h3>AI algorithms calculation result：</h3>
+										'<br />search depth：'+AI.treeDepth+'<br />Searched branch：'+
+										AI.number+'braches <br />Best move rating：'+
+										val.value+'%'+
+										' <br />Searched time：'+
 										(nowTime-initTime)+'ms'
 		return [man.x,man.y,val.x,val.y]
 	}else {
@@ -105,7 +104,7 @@ AI.getMoves = function (map, my){
 			var y=man.y;
 			var newX=val[n][0];
 			var newY=val[n][1];
-			 //如果不是长将着法
+			
 			if (foul[0]!=x || foul[1]!=y || foul[2]!=newX || foul[3]!=newY ){
 				moves.push([x,y,newX,newY,man.key])
 			}
