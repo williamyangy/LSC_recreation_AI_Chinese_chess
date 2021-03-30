@@ -1,17 +1,15 @@
-/*! Ò»Ò¶ï¿½ï¿½ï¿½ï¿½ | qq:28701884 | ï¿½ï¿½Ó­Ö¸ï¿½ï¿½ */
-
 var AI = AI||{};
 
-AI.historyTable	=	{};		//ï¿½ï¿½Ê·ï¿½ï¿½
+AI.historyTable	=	{};		
 
 
-//ï¿½Ë¹ï¿½ï¿½ï¿½ï¿½Ü³ï¿½Ê¼ï¿½ï¿½
+
 AI.init = function(pace){
-	var bill = AI.historyBill || com.gambit; //ï¿½ï¿½ï¿½Ö¿ï¿½
+	var bill = AI.historyBill || com.gambit; 
 	if (bill.length){
 		var len=pace.length;
 		var arr=[];
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ÏÈËÑË÷ÆåÆ×
 		for (var i=0;i< bill.length;i++){
 			if (bill[i].slice(0,len)==pace) {
 			arr.push(bill[i]);
@@ -26,7 +24,7 @@ AI.init = function(pace){
 		}
 		
 	}
-	 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð£ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½ï¿½Ü¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+	
 	var initTime = new Date().getTime();
 	AI.treeDepth=play.depth;
 	//AI.treeDepth=4;
@@ -44,20 +42,20 @@ AI.init = function(pace){
 	if (val&&val.value!=-8888) {
 		var man = play.mans[val.key];
 		var nowTime= new Date().getTime();
-		com.get("moveInfo").innerHTML='<h3>AIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h3>ï¿½ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½'+
+		com.get("moveInfo").innerHTML='<h3>AI search results£º</h3>Best move£º'+
 										com.createMove(com.arr2Clone(play.map),man.x,man.y,val.x,val.y)+
-										'<br />ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½'+AI.treeDepth+'<br />ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½'+
-										AI.number+'ï¿½ï¿½ <br />ï¿½ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'+
-										val.value+'ï¿½ï¿½'+
-										' <br />ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½'+
-										(nowTime-initTime)+'ï¿½ï¿½ï¿½ï¿½'
+										'<br />search depth£º'+AI.treeDepth+'<br />search branch£º'+
+										AI.number+'¸ö <br />Best Move rating£º'+
+										val.value+'·Ö'+
+										' <br />Search time£º'+
+										(nowTime-initTime)+'ms'
 		return [man.x,man.y,val.x,val.y]
 	}else {
 		return false;	
 	}
 }
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å·ï¿½
+
 AI.iterativeSearch = function (map, my){
 	var timeOut=100;
 	var initDepth = 1;
@@ -77,7 +75,7 @@ AI.iterativeSearch = function (map, my){
 	return false;
 }
 
-//È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
 AI.getMapAllMan = function (map, my){
 	var mans=[];
 	for (var i=0; i<map.length; i++){
@@ -93,28 +91,7 @@ AI.getMapAllMan = function (map, my){
 	return mans;
 }
 
-/*
-//È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Å·ï¿½
-AI.getMoves = function (map, my, txtMap){
-	var highMores = [];   //ï¿½ï¿½ï¿½È¼ï¿½ï¿½ßµï¿½ï¿½Å·ï¿½
-	var manArr = AI.getMapAllMan (map, my);
-	var moves = [];
-	var history=AI.historyTable[txtMap];
-	for (var i=0; i<manArr.length; i++){
-		var man = manArr[i];
-		var val=man.bl(map);
-		for (var n=0; n<val.length; n++){
-			if (history){
-				highMores.push([man.x,man.y,val[n][0],val[n][1],man.key])
-			}else{
-				moves.push([man.x,man.y,val[n][0],val[n][1],man.key])
-			}
-		}
-	}
-	return highMores.concat(moves);
-}
-*/
-//È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Å·ï¿½
+
 AI.getMoves = function (map, my){
 	var manArr = AI.getMapAllMan (map, my);
 	var moves = [];
@@ -128,7 +105,7 @@ AI.getMoves = function (map, my){
 			var y=man.y;
 			var newX=val[n][0];
 			var newY=val[n][1];
-			 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½ï¿½Å·ï¿½
+			 //Èç¹û²»ÊÇ³¤½«×Å·¨
 			if (foul[0]!=x || foul[1]!=y || foul[2]!=newX || foul[3]!=newY ){
 				moves.push([x,y,newX,newY,man.key])
 			}
@@ -136,23 +113,19 @@ AI.getMoves = function (map, my){
 	}
 	return moves;
 }
-//A:ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½value/B:ï¿½ï¿½ï¿½ï¿½value/depthï¿½ï¿½ï¿½ã¼¶
+
 AI.getAlphaBeta = function (A, B, depth, map ,my) { 
-	//var txtMap= map.join();
-	//var history=AI.historyTable[txtMap];
-	//	if (history && history.depth >= AI.treeDepth-depth+1){
-	//		return 	history.value*my;
-	//}
+
 	if (depth == 0) {
-		return {"value":AI.evaluate(map , my)}; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½; 
-ï¿½ï¿½	}
-ï¿½ï¿½	var moves = AI.getMoves(map , my ); //ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ß·ï¿½; 
-ï¿½ï¿½	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
+		return {"value":AI.evaluate(map , my)}; 
+¡¡	}
+¡¡	var moves = AI.getMoves(map , my ); 
+¡¡	
 
 	for (var i=0; i < moves.length; i++) {
 		
 		
-ï¿½ï¿½ï¿½ï¿½	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß·ï¿½;
+¡¡
 		var move= moves[i];
 		var key = move[4];
 		var oldX= move[0];
@@ -166,63 +139,59 @@ AI.getAlphaBeta = function (A, B, depth, map ,my) {
 		play.mans[key].x = newX;
 		play.mans[key].y = newY;
 		
-	ï¿½ï¿½ï¿½ï¿½if (clearKey=="j0"||clearKey=="J0") {//ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß·ï¿½; 
+	¡¡¡¡if (clearKey=="j0"||clearKey=="J0") {
 			play.mans[key]	.x = oldX;
 			play.mans[key]	.y = oldY;
 			map[ oldY ][ oldX ] = key;
 			delete map[ newY ][ newX ];
 			if (clearKey){
 				 map[ newY ][ newX ] = clearKey;
-				// play.mans[ clearKey ].isShow = false;
+		
 			}
 
 			return {"key":key,"x":newX,"y":newY,"value":8888};
-			//return rootKey; 
-	ï¿½ï¿½ï¿½ï¿½}else { 
-	ï¿½ï¿½ï¿½ï¿½	var val = -AI.getAlphaBeta(-B, -A, depth - 1, map , -my).value; 
-			//val = val || val.value;
 	
-	ï¿½ï¿½ï¿½ï¿½	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß·ï¿½;ï¿½ï¿½ 
+	¡¡¡¡}else { 
+	¡¡¡¡	var val = -AI.getAlphaBeta(-B, -A, depth - 1, map , -my).value; 
+¡¡ 
 			play.mans[key]	.x = oldX;
 			play.mans[key]	.y = oldY;
 			map[ oldY ][ oldX ] = key;
 			delete map[ newY ][ newX ];
 			if (clearKey){
 				 map[ newY ][ newX ] = clearKey;
-				 //play.mans[ clearKey ].isShow = true;
+				
 			}
-	ï¿½ï¿½ï¿½ï¿½	if (val >= B) { 
-				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß·ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½; 
-				//AI.setHistoryTable(txtMap,AI.treeDepth-depth+1,B,my);
+	¡¡¡¡	if (val >= B) { 
+				
 				return {"key":key,"x":newX,"y":newY,"value":B}; 
 			} 
 			if (val > A) { 
-	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	A = val; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß·ï¿½; 
+	¡¡¡¡¡¡¡¡	A = val; 
 				if (AI.treeDepth == depth) var rootKey={"key":key,"x":newX,"y":newY,"value":A};
 			} 
 		} 
-ï¿½ï¿½	} 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß·ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½; 
-	//AI.setHistoryTable(txtMap,AI.treeDepth-depth+1,A,my);
-	if (AI.treeDepth == depth) {//ï¿½Ñ¾ï¿½ï¿½Ý¹ï¿½Ø¸ï¿½ï¿½ï¿½
+¡¡	} 
+	
+	if (AI.treeDepth == depth) {
 		if (!rootKey){
-			//AIÃ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß·ï¿½ï¿½ï¿½Ëµï¿½ï¿½AIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½false
+			
 			return false;
 		}else{
-			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß·ï¿½;
+	
 			return rootKey;
 		}
 	}
-ï¿½ï¿½return {"key":key,"x":newX,"y":newY,"value":A}; 
+¡¡return {"key":key,"x":newX,"y":newY,"value":A}; 
 }
 
-//ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ê·ï¿½ï¿½
+
 AI.setHistoryTable = function (txtMap,depth,value,my){
 	AI.setHistoryTable.lenght ++;
 	AI.historyTable[txtMap] = {depth:depth,value:value} 
 }
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½Öµï¿½ï¿½
+
 AI.evaluate = function (map,my){
 	var val=0;
 	for (var i=0; i<map.length; i++){
@@ -233,14 +202,12 @@ AI.evaluate = function (map,my){
 			}
 		}
 	}
-	//val+=Math.floor( Math.random() * 10);  //ï¿½ï¿½AIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
-	//com.show()
-	//z(val*my)
+
 	AI.number++;
 	return val*my;
 }
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½Öµï¿½ï¿½
+
 AI.evaluate1 = function (map,my){
 	var val=0;
 	for (var i in play.mans){
@@ -249,9 +216,7 @@ AI.evaluate1 = function (map,my){
 			val += man.value[man.y][man.x] * man.my;
 		}
 	}
-	//val+=Math.floor( Math.random() * 10);  //ï¿½ï¿½AIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
-	//com.show()
-	//z(val*my)
+
 	AI.number++;
 	return val*my;
 }
