@@ -42,11 +42,11 @@ AI.init = function(pace){
 	if (val&&val.value!=-8888) {
 		var man = play.mans[val.key];
 		var nowTime= new Date().getTime();
-		com.get("moveInfo").innerHTML='<h3>AI algorithms calculation result£º</h3>'+
-										'<br />search depth£º'+AI.treeDepth+'<br />Searched branch£º'+
-										AI.number+'braches <br />Best move rating£º'+
+		com.get("moveInfo").innerHTML='<h3>AI algorithms calculation resultï¼š</h3>'+
+										'<br />search depthï¼š'+AI.treeDepth+'<br />Searched branchï¼š'+
+										AI.number+'braches <br />Best move ratingï¼š'+
 										val.value+'%'+
-										' <br />Searched time£º'+
+										' <br />Searched timeï¼š'+
 										(nowTime-initTime)+'ms'
 		return [man.x,man.y,val.x,val.y]
 	}else {
@@ -116,15 +116,14 @@ AI.getMoves = function (map, my){
 AI.getAlphaBeta = function (A, B, depth, map ,my) { 
 
 	if (depth == 0) {
-		return {"value":AI.evaluate(map , my)}; 
-¡¡	}
-¡¡	var moves = AI.getMoves(map , my ); 
-¡¡	
+		return {"value":AI.evaluate(map , my)};}
+ã€€	var moves = AI.getMoves(map , my ); 
+ã€€	
 
 	for (var i=0; i < moves.length; i++) {
 		
 		
-¡¡
+ã€€
 		var move= moves[i];
 		var key = move[4];
 		var oldX= move[0];
@@ -138,7 +137,7 @@ AI.getAlphaBeta = function (A, B, depth, map ,my) {
 		play.mans[key].x = newX;
 		play.mans[key].y = newY;
 		
-	¡¡¡¡if (clearKey=="j0"||clearKey=="J0") {
+	ã€€ã€€if (clearKey=="j0"||clearKey=="J0") {
 			play.mans[key]	.x = oldX;
 			play.mans[key]	.y = oldY;
 			map[ oldY ][ oldX ] = key;
@@ -150,9 +149,9 @@ AI.getAlphaBeta = function (A, B, depth, map ,my) {
 
 			return {"key":key,"x":newX,"y":newY,"value":8888};
 	
-	¡¡¡¡}else { 
-	¡¡¡¡	var val = -AI.getAlphaBeta(-B, -A, depth - 1, map , -my).value; 
-¡¡ 
+	ã€€ã€€}else { 
+	ã€€ã€€	var val = -AI.getAlphaBeta(-B, -A, depth - 1, map , -my).value; 
+ã€€ 
 			play.mans[key]	.x = oldX;
 			play.mans[key]	.y = oldY;
 			map[ oldY ][ oldX ] = key;
@@ -161,16 +160,16 @@ AI.getAlphaBeta = function (A, B, depth, map ,my) {
 				 map[ newY ][ newX ] = clearKey;
 				
 			}
-	¡¡¡¡	if (val >= B) { 
+	ã€€ã€€	if (val >= B) { 
 				
 				return {"key":key,"x":newX,"y":newY,"value":B}; 
 			} 
 			if (val > A) { 
-	¡¡¡¡¡¡¡¡	A = val; 
+	ã€€ã€€ã€€ã€€	A = val; 
 				if (AI.treeDepth == depth) var rootKey={"key":key,"x":newX,"y":newY,"value":A};
 			} 
 		} 
-¡¡	} 
+ã€€	} 
 	
 	if (AI.treeDepth == depth) {
 		if (!rootKey){
@@ -181,7 +180,7 @@ AI.getAlphaBeta = function (A, B, depth, map ,my) {
 			return rootKey;
 		}
 	}
-¡¡return {"key":key,"x":newX,"y":newY,"value":A}; 
+ã€€return {"key":key,"x":newX,"y":newY,"value":A}; 
 }
 
 
