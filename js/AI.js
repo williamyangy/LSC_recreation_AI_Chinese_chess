@@ -44,7 +44,7 @@ AI.init = function(pace){
 		var nowTime= new Date().getTime();
 		com.get("moveInfo").innerHTML='<h3>AI algorithms calculation result：</h3>'+
 										'<br />search depth：'+AI.treeDepth+'<br />Searched branch：'+
-										AI.number+'braches <br />Best move rating：'+
+										AI.number+' branches <br />Best move rating：'+
 										val.value+'%'+
 										' <br />Searched time：'+
 										(nowTime-initTime)+'ms'
